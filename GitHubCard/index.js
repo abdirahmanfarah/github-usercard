@@ -5,12 +5,23 @@
 
 axios
       .get("https://api.github.com/users/abdirahmanfarah")
-      .then(response => 
-        console.log(response)
-      )
-      .catch(error => 
+      .then(response =>{
+          console.log(response.data)
+
+          profileShow.appendChild(profileCard(response.data))
+
+          // const newProfileCard = profileCard();
+          // profileShow.appendChild(newProfileCard);
+
+          // response.data.message.forEach( item => {
+          //   const newProfileCard = profileCard(item);
+          //   profileShow.appendChild(newProfileCard);
+          // });
+      })
+      .catch(error => {
         console.log('No Data', error)
-      )
+      });
+
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -24,6 +35,10 @@ axios
 */
 
 const profileShow = document.querySelector('.cards');
+
+// console.log(profileShow);
+
+
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -57,7 +72,11 @@ const followersArray = [];
 
 */
 
-function profileCard(imgUrl){
+// const mainH = document.querySelector('.cards');
+
+// console.log(mainH);
+
+function profileCard(item){
 
   // Creating Elements 
   const
@@ -76,13 +95,12 @@ function profileCard(imgUrl){
       // Creating Classes 
 
       newCard.classList.add = ('card');
-      newImage.src = imgUrl;
       cardInfo.classList.add = ('card-info');
       usersName.classList.add = ('name');
       usersUserName.classList.add = ('username');
 
       // Append 
-
+      // mainH.appendChild(newCard);
       newCard.appendChild(newImage);
       newCard.appendChild(cardInfo);
       cardInfo.appendChild(usersName);
@@ -94,9 +112,25 @@ function profileCard(imgUrl){
       cardInfo.appendChild(following);
       cardInfo.appendChild(bio);
 
-      return profileCard
+       //Text Content
+      // newImage.src = `${data.avatar_url}`;
+      usersName.textContent = user.name;
+      usersUserName.textContent = user.login;
+      location.textContent = user.locationi;
+      // followers.textContent = {followers};
+      // following.textContent = {following};
+      // bio.textContent = {bio};
 
+      
+      return profileCard;
 }
+
+
+     
+// profileCard(git);
+
+// console.log(profileCard());
+
 
 /* List of LS Instructors Github username's: 
   tetondan
